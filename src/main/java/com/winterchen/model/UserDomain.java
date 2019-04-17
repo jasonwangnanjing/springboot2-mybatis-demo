@@ -1,21 +1,31 @@
 package com.winterchen.model;
 
 public class UserDomain {
-    private Integer userId;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private Integer id;
 
     private String userName;
 
     private String password;
 
-    private String phone;
-
-    public Integer getUserId() {
-        return userId;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setAge(int age) {
+        this.age = age;
     }
+
+    private int age;
+
+
 
     public String getUserName() {
         return userName;
@@ -33,11 +43,5 @@ public class UserDomain {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getPhone() {
-        return phone;
-    }
 
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
 }

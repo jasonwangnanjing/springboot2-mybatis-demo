@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 根标签 -->
+<configuration>
+    <!--<properties>-->
+    <!--<property name="driver" value="org.mariadb.jdbc.Driver"/>-->
+    <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/ssmdemo?useUnicode=true&amp;characterEncoding=utf-8&amp;allowMultiQueries=true"/>-->
+    <!--<property name="username" value="root"/>-->
+    <!--<property name="password" value="xingfu13"/>-->
+    <!--</properties>-->
+    <!-- seperate db properties from config.-->
+<!--    <properties resource="db.properties" ></properties>-->
+
+
+    <!--
+    Mybatis配置文件中各标签的位置顺序如下:
+    properties, settings,
+    typeAliases, typeHandlers,
+    objectFactory,objectWrapperFactory,
+    plugins,
+    environments, databaseIdProvider, mappers
+    Lima 竟然有这样的限制
+-->
+
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
+    </settings>
+
+
+</configuration>

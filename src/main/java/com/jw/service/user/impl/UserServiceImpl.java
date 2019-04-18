@@ -1,10 +1,10 @@
-package com.winterchen.service.user.impl;
+package com.jw.service.user.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.winterchen.dao.UserDao;
-import com.winterchen.model.UserDomain;
-import com.winterchen.service.user.UserService;
+import com.jw.dao.UserDao;
+import com.jw.model.UserDomain;
+import com.jw.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

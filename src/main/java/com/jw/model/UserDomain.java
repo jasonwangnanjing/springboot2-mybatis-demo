@@ -1,4 +1,4 @@
-package com.winterchen.model;
+package com.jw.model;
 
 import java.io.Serializable;
 

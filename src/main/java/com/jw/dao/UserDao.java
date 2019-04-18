@@ -1,8 +1,7 @@
-package com.winterchen.dao;
+package com.jw.dao;
 
 
-import com.winterchen.model.UserDomain;
-import org.apache.ibatis.annotations.Mapper;
+import com.jw.model.UserDomain;
 
 import java.util.List;
 

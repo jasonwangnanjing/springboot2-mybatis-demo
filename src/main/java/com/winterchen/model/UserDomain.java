@@ -1,6 +1,12 @@
 package com.winterchen.model;
 
-public class UserDomain {
+import java.io.Serializable;
+
+public class UserDomain implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+
     public Integer getId() {
         return id;
     }

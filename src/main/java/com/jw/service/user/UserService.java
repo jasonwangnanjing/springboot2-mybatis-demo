@@ -1,14 +1,14 @@
 package com.jw.service.user;
 
 import com.github.pagehelper.PageInfo;
-import com.jw.model.UserDomain;
+import com.jw.model.User;
 
 /**
  * Created by Administrator on 2018/4/19.
  */
 public interface UserService {
 
-    int addUser(UserDomain user);
+    int addUser(User user);
 
-    PageInfo<UserDomain> findAllUser(int pageNum, int pageSize);
+    PageInfo<User> findAllUser(int pageNum, int pageSize);
 }

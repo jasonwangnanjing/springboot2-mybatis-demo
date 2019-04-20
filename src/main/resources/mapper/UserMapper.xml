@@ -14,7 +14,7 @@
 
 
 
-    <resultMap id="resultUser" type="UserDomain">
+    <resultMap id="resultUser" type="User">
         <id column="id" property="id"/>
         <result column="user_name" property="userName"/>
     </resultMap>
@@ -52,7 +52,7 @@
        <!--keyProperty：主键对应的pojo属性名-->
      <!--&ndash;&gt;-->
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
-            parameterType="UserDomain">
+            parameterType="User">
         INSERT INTO tb_user (
 
         user_name,
@@ -84,7 +84,7 @@
      <!--&ndash;&gt;-->
     <!--// delete/insert/update operation could be configed to flushCache 'false'-->
     <!--// per default. it was set to 'true' means cache will be flushed.-->
-    <update id="updateUser" parameterType="UserDomain" flushCache="true">
+    <update id="updateUser" parameterType="User" flushCache="true">
         UPDATE tb_user
         <trim prefix="set" suffixOverrides=",">
             <if test="userName!=null">user_name = #{userName},</if>
@@ -118,7 +118,7 @@
         select * from ${tableName}
     </select>
 
-    <select id="login" resultType="UserDomain">
+    <select id="login" resultType="User">
         select * from tb_user where user_name = #{userName} and password = #{password}
     </select>
 
@@ -127,13 +127,13 @@
        <!--resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->
        <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
      <!--&ndash;&gt;-->
-    <select id="queryUserById" resultType="UserDomain">
+    <select id="queryUserById" resultType="User">
         select * from tb_user where id = #{id}
     </select>
-    <select id="queryUserAll" resultType="UserDomain">
+    <select id="queryUserAll" resultType="User">
         select * from tb_user
     </select>
-    <select id="selectUsers" resultType="UserDomain">
+    <select id="selectUsers" resultType="User">
         select * from tb_user
     </select>
 

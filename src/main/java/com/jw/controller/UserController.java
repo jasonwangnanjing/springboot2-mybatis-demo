@@ -1,6 +1,6 @@
 package com.jw.controller;
 
-import com.jw.model.UserDomain;
+import com.jw.model.User;
 import com.jw.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/add")
-    public int addUser(UserDomain user){
+    public int addUser(User user){
         return userService.addUser(user);
     }
 

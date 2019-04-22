@@ -1,6 +1,6 @@
 package com.jw.model;
 
-public class Item {
+public class Material {
     public Integer getId() {
         return id;
     }
@@ -40,7 +40,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "Material{" +
                 "id=" + id +
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +

@@ -36,19 +36,19 @@ public class OrderDetail {
         this.status = status;
     }
 
-    public Item getItem() {
-        return item;
+    public Material getMaterial() {
+        return material;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
+    public void setMaterial(Material item) {
+        this.material = item;
     }
 
     private Integer id;
     private BigInteger orderId;
     private Double totalPrice;
     private Integer status;
-    private Item item;
+    private Material material;
 
     @Override
     public String toString() {
@@ -57,7 +57,7 @@ public class OrderDetail {
                 ", orderId=" + orderId +
                 ", totalPrice=" + totalPrice +
                 ", status=" + status +
-                ", item=" + item +
+                ", material=" + material +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
 package com.jw.service.user;
 
-public class OrderDetailService {
+public interface OrderDetailService {
 }

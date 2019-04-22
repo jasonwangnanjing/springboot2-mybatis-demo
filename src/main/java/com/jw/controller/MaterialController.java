@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -25,8 +26,9 @@ public class MaterialController {
 
 
     @ResponseBody
-    @PostMapping("/getAll")
-    public Material getMaterial(int id){
+    @RequestMapping("/getMaterial")
+    public Material getMaterial(@RequestParam(name = "materialID", required = true)
+                                            int id){
         return materialService.getMaterial(id);
     }
 

@@ -12,7 +12,7 @@
 <!--    <cache-ref namespace="dao.OrderMapper"/>-->
     <cache flushInterval="60000" eviction="FIFO" size="512" readOnly="false"/>
 
-    <resultMap id="resultUser" type="User">
+    <resultMap id="resultUser" type="com.jw.model.User">
         <id column="id" property="id"/>
         <result column="user_name" property="userName"/>
     </resultMap>
@@ -39,7 +39,7 @@
        <!--keyProperty：主键对应的pojo属性名-->
      <!--&ndash;&gt;-->
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
-            parameterType="User">
+            parameterType="com.jw.model.User">
         INSERT INTO tb_user (
 
         user_name,
@@ -71,7 +71,7 @@
      <!--&ndash;&gt;-->
     <!--// delete/insert/update operation could be configed to flushCache 'false'-->
     <!--// per default. it was set to 'true' means cache will be flushed.-->
-    <update id="updateUser" parameterType="User" flushCache="true">
+    <update id="updateUser" parameterType="com.jw.model.User" flushCache="true">
         UPDATE tb_user
         <trim prefix="set" suffixOverrides=",">
             <if test="userName!=null">user_name = #{userName},</if>
@@ -114,13 +114,13 @@
        <!--resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->
        <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
      <!--&ndash;&gt;-->
-    <select id="queryUserById" resultType="User">
+    <select id="queryUserById" resultType="com.jw.model.User">
         select * from tb_user where id = #{id}
     </select>
-    <select id="queryUserAll" resultType="User">
+    <select id="queryUserAll" resultType="com.jw.model.User">
         select * from tb_user
     </select>
-    <select id="selectUsers" resultType="User">
+    <select id="selectUsers" resultType="com.jw.model.User">
         select * from tb_user
     </select>
 

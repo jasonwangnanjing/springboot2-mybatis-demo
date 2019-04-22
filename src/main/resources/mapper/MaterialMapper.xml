@@ -7,10 +7,10 @@
     <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
        resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
      -->
-    <select id="selectMaterial" resultType="Material">
+    <select id="getMaterial" resultType="com.jw.model.Material">
       select * from tb_item where id = #{id}
    </select>
-    <update id="updateMaterial" parameterType="Material">
+    <update id="updateMaterial" parameterType="com.jw.model.Material">
        update tb_item set
                       tb_item.itemName = #{Material.itemName}
                       tb_item.itemPrice = #{Material.itemPrice}
@@ -21,7 +21,7 @@
     <delete id="deleteMaterial" parameterType="int">
         delete from tb_item where id = #{id}
     </delete>
-    <insert id="createMaterial" parameterType="Material">
+    <insert id="createMaterial" parameterType="com.jw.model.Material">
 
         insert into tb_item ( itemName, itemPrice,itemDetail ) values  ( #{Material.itemName}, #{Material.itemPrice},#{Material.itemDetail} )
 

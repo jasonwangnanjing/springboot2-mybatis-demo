@@ -12,24 +12,11 @@
 <!--    <cache-ref namespace="dao.OrderMapper"/>-->
     <cache flushInterval="60000" eviction="FIFO" size="512" readOnly="false"/>
 
-
-
     <resultMap id="resultUser" type="User">
         <id column="id" property="id"/>
         <result column="user_name" property="userName"/>
     </resultMap>
 
-
-<!--    <resultMap id="OrderUserResultMap" type="Order" autoMapping="true">-->
-<!--        <id column="id" property="id"/>-->
-<!--        &lt;!&ndash;association:完成子对象的映射&ndash;&gt;-->
-<!--        &lt;!&ndash;property:子对象在父对象中的属性名&ndash;&gt;-->
-<!--        &lt;!&ndash;javaType:子对象的java类型&ndash;&gt;-->
-<!--        &lt;!&ndash;autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配&ndash;&gt;-->
-<!--        <association property="user" javaType="User" autoMapping="true">-->
-<!--            <id column="user_id" property="id"/>-->
-<!--        </association>-->
-<!--    </resultMap>-->
 
      <!--&lt;!&ndash;sql id could be reused by different operation  &ndash;&gt;-->
     <sql id="commonField">

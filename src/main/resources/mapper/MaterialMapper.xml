@@ -12,10 +12,10 @@
    </select>
     <update id="updateMaterial" parameterType="com.jw.model.Material">
        update tb_item set
-                      tb_item.itemName = #{Material.itemName}
-                      tb_item.itemPrice = #{Material.itemPrice}
-                      tb_item.itemDetail = #{Material.itemDetail}
-                      where tb_item.id = #{Material.id}
+                      tb_item.itemName = #{itemName},
+                      tb_item.itemPrice = #{itemPrice},
+                      tb_item.itemDetail = #{itemDetail}
+                      where tb_item.id = #{id}
    </update>
 
     <delete id="deleteMaterial" parameterType="int">

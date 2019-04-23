@@ -1,6 +1,7 @@
 package com.jw.service.user.impl;
 
 import com.jw.dao.MaterialDao;
+import com.jw.exception.ParameterInvalidException;
 import com.jw.model.Material;
 import com.jw.service.user.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,13 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public int updateMaterial(Material material) {
+        //check material id is not null
+        if (material.getId() == null) {
+
+            throw new ParameterInvalidException();
+        }
+
+
         return materialDao.updateMaterial(material);
     }
 

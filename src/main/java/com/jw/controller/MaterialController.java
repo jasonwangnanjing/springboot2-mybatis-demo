@@ -17,7 +17,7 @@ public class MaterialController {
 
     @ResponseBody
     @PostMapping("/add")
-    public int addMaterial(@RequestBody  Material material){
+    public int add(@RequestBody Material material) {
         return materialService.createMaterial(material);
     }
 
@@ -25,17 +25,21 @@ public class MaterialController {
     @ResponseBody
     @RequestMapping("/get")
     public Material get(@RequestParam(name = "materialID", required = true, defaultValue = "1")
-                                            int id){
+                                int id) {
         return materialService.getMaterial(id);
     }
 
     @ResponseBody
     @DeleteMapping("/delete")
-    public int delete(@RequestParam(name = "materialID",required = true,defaultValue = "1")int id){
+    public int delete(@RequestParam(name = "materialID", required = true, defaultValue = "1") int id) {
 
-        return  materialService.deleteMaterial(id);
-
-
+        return materialService.deleteMaterial(id);
     }
 
+
+    @ResponseBody
+    @PostMapping("/update")
+    public int change(@RequestBody Material material) {
+        return materialService.updateMaterial(material);
+    }
 }

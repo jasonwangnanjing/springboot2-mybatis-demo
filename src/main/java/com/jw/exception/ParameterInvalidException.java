@@ -11,4 +11,9 @@ public class ParameterInvalidException extends RuntimeException {
     {
         System.out.println("id  " +" entered is not valid");
     }
+
+    @Override
+    public String getMessage() {
+        return "id can not be null for update";
+    }
 }

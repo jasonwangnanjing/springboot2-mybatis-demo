@@ -18,7 +18,7 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/add")
-    public int addUser(User user){
+    public int addUser(@RequestBody  User user){
         return userService.addUser(user);
     }
 

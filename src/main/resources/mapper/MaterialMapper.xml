@@ -21,9 +21,9 @@
     <delete id="deleteMaterial" parameterType="int">
         delete from tb_item where id = #{id}
     </delete>
-    <insert id="createMaterial" parameterType="com.jw.model.Material">
+    <insert id="createMaterial" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.jw.model.Material">
 
-        insert into tb_item ( itemName, itemPrice,itemDetail ) values  ( #{Material.itemName}, #{Material.itemPrice},#{Material.itemDetail} )
+        insert into tb_item ( itemName, itemPrice,itemDetail ) values  ( #{itemName}, #{itemPrice},#{itemDetail} )
 
     </insert>
 </mapper>

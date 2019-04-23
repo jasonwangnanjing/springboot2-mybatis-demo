@@ -5,10 +5,7 @@ import com.jw.model.User;
 import com.jw.service.user.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/Material")
@@ -20,7 +17,7 @@ public class MaterialController {
 
     @ResponseBody
     @PostMapping("/add")
-    public int addMaterial(Material material){
+    public int addMaterial(@RequestBody  Material material){
         return materialService.createMaterial(material);
     }
 

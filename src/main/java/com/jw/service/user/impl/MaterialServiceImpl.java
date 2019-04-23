@@ -24,8 +24,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public int deleteMaterial(Material material) {
-        return materialDao.deleteMaterial(material);
+    public int deleteMaterial(int id) {
+        return materialDao.deleteMaterial(id);
     }
 
     @Override

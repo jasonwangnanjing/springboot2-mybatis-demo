@@ -6,6 +6,6 @@ public interface MaterialService {
 
     int createMaterial(Material material);
     int updateMaterial(Material material);
-    int deleteMaterial(Material material);
+    int deleteMaterial(int id);
     Material getMaterial(int id);
 }

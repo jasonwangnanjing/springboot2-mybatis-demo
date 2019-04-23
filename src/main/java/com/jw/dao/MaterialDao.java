@@ -6,6 +6,6 @@ public interface MaterialDao {
 
     int createMaterial(Material material);
     int updateMaterial(Material material);
-    int deleteMaterial(Material material);
+    int deleteMaterial(int id);
     Material getMaterial(Integer id);
 }

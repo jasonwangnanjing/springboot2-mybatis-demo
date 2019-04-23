@@ -23,10 +23,19 @@ public class MaterialController {
 
 
     @ResponseBody
-    @RequestMapping("/getMaterial")
-    public Material getMaterial(@RequestParam(name = "materialID", required = true)
+    @RequestMapping("/get")
+    public Material get(@RequestParam(name = "materialID", required = true, defaultValue = "1")
                                             int id){
         return materialService.getMaterial(id);
+    }
+
+    @ResponseBody
+    @DeleteMapping("/delete")
+    public int delete(@RequestParam(name = "materialID",required = true,defaultValue = "1")int id){
+
+        return  materialService.deleteMaterial(id);
+
+
     }
 
 }

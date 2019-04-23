@@ -31,3 +31,7 @@ authorization with spring security
 
 **vue as frontend?** 
  
+ 
+ Common Errors:
+ during sql operation, sometimes it report error 'does not have get method for property xxx',need check sql's object has a property or not.
+ 

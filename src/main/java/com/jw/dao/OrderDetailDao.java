@@ -2,6 +2,7 @@ package com.jw.dao;
 
 import com.jw.model.Order;
 import com.jw.model.OrderDetail;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 

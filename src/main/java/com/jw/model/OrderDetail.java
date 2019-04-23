@@ -50,6 +50,16 @@ public class OrderDetail {
     private Integer status;
     private Material material;
 
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    private Integer itemId;
+
     @Override
     public String toString() {
         return "OrderDetail{" +

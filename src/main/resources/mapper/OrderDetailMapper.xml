@@ -7,23 +7,23 @@
     <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
        resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
      -->
-    <select id="getMaterial" resultType="OrderDetail">
-      select * from tb_orderdetail where id = #{id}
+    <select id="getOrderDetail" parameterType="OrderDetail" resultType="OrderDetail">
+      select * from tb_orderdetail where order_id = #{orderId} AND item_id = #{itemId}
    </select>
-    <update id="updateMaterial" parameterType="com.jw.model.Material">
-       update tb_item set
-                      tb_item.itemName = #{itemName},
-                      tb_item.itemPrice = #{itemPrice},
-                      tb_item.itemDetail = #{itemDetail}
-                      where tb_item.id = #{id}
+    <update id="updateMaterial" parameterType="OrderDetail">
+       update tb_orderdetail set
+                      tb_orderdetail.status = #{status},
+                      tb_orderdetail.materialId = #{OrderDetail.getMaterial().getId()},
+                      tb_orderdetail.total_price = #{totalPrice}
+                      where order_id = #{orderId} AND item_id = #{itemId}
    </update>
 
-    <delete id="deleteMaterial" parameterType="int">
-        delete from tb_item where id = #{id}
+    <delete id="deleteOrderDetail" parameterType="OrderDetail">
+        delete from tb_orderdetail where order_id = #{orderId} AND item_id = #{itemId}
     </delete>
-    <insert id="createMaterial" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.jw.model.Material">
+    <insert id="createOrderDetail" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="OrderDetail">
 
-        insert into tb_item ( itemName, itemPrice,itemDetail ) values  ( #{itemName}, #{itemPrice},#{itemDetail} )
+        insert into tb_orderdetail ( order_id,total_price,item_id,status,materialId ) values  ( #{orderId}, #{totalPrice},#{itemId},#{status},#{material.id} )
 
     </insert>
 </mapper>

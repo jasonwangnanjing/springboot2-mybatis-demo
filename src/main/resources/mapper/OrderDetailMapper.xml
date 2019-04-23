@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper:根标签，namespace：命名空间，随便写，一般保证命名空间唯一 -->
+<mapper namespace="com.jw.dao.OrderDetailDao">
+    <!-- statement，内容：sql语句。id：唯一标识，随便写，在同一个命名空间下保持唯一
+       resultType：sql语句查询结果集的封装类型,tb_user即为数据库中的表
+     -->
+    <select id="getMaterial" resultType="OrderDetail">
+      select * from tb_orderdetail where id = #{id}
+   </select>
+    <update id="updateMaterial" parameterType="com.jw.model.Material">
+       update tb_item set
+                      tb_item.itemName = #{itemName},
+                      tb_item.itemPrice = #{itemPrice},
+                      tb_item.itemDetail = #{itemDetail}
+                      where tb_item.id = #{id}
+   </update>
+
+    <delete id="deleteMaterial" parameterType="int">
+        delete from tb_item where id = #{id}
+    </delete>
+    <insert id="createMaterial" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.jw.model.Material">
+
+        insert into tb_item ( itemName, itemPrice,itemDetail ) values  ( #{itemName}, #{itemPrice},#{itemDetail} )
+
+    </insert>
+</mapper>

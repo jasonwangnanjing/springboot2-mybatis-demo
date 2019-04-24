@@ -1,4 +1,4 @@
-package com.jw.service.user;
+package com.jw.service;
 
 public interface OrderService {
 }

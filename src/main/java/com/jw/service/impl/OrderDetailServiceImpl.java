@@ -1,10 +1,12 @@
-package com.jw.service.user.impl;
+package com.jw.service.impl;
 
 import com.jw.dao.OrderDetailDao;
 import com.jw.model.OrderDetail;
-import com.jw.service.user.OrderDetailService;
+import com.jw.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service( value = "OrderDetailService")
 public class OrderDetailServiceImpl implements OrderDetailService {
@@ -17,5 +19,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
         return  orderDetailDao.createOrderDetail(orderDetail);
 
+    }
+
+    @Override
+    public List<OrderDetail> getOrderDetails(String order_number) {
+        return orderDetailDao.getOrderDetails(order_number);
     }
 }

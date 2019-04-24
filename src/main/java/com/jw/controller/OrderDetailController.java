@@ -23,7 +23,7 @@ public class OrderDetailController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/get")
+    @RequestMapping(value = "/getOrderDetails")
     public List<OrderDetail> get(@RequestParam String orderId) {
 
         return orderDetailService.getOrderDetails(orderId);

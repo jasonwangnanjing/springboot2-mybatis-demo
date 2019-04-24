@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service(value = "OrderDetailService")
+@Service( value = "OrderDetailService")
 public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Autowired
@@ -17,17 +17,17 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Override
     public int createOrderDetail(OrderDetail orderDetail) {
 
-        return orderDetailDao.createOrderDetail(orderDetail);
+        return  orderDetailDao.createOrderDetail(orderDetail);
 
     }
 
     @Override
-    public List<OrderDetail> getOrderDetails(String orderId) {
-        return orderDetailDao.getOrderDetails(orderId);
+    public List<OrderDetail> getOrderDetails(String order_number) {
+        return orderDetailDao.getOrderDetails(order_number);
     }
 
     @Override
-    public OrderDetail getOrderDetail(String orderId, String itemId) {
+    public OrderDetail getOrderDetail(String orderId,String itemId) {
         return orderDetailDao.getOrderDetail(orderId,itemId);
     }
 

@@ -39,9 +39,7 @@ public class OrderDetailController {
     @ResponseBody
     @RequestMapping(value = "/updateOrderDetail", method = RequestMethod.PUT)
     public int update(@RequestBody OrderDetail orderDetail){
-//
-//        orderDetail.setOrderId(orderId);
-//        orderDetail.setItemId(itemId);
+
 
         return orderDetailService.updateOrderDetail(orderDetail);
     }

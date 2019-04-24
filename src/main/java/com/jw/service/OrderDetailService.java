@@ -11,4 +11,6 @@ public interface OrderDetailService {
     List<OrderDetail> getOrderDetails(String order_number);
 
     OrderDetail getOrderDetail(String orderId,String itemId);
+
+    int updateOrderDetail(OrderDetail orderDetail);
 }

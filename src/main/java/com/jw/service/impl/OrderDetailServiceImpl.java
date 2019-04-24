@@ -31,5 +31,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         return orderDetailDao.getOrderDetail(orderId,itemId);
     }
 
+    @Override
+    public int updateOrderDetail(OrderDetail orderDetail) {
+        System.out.println(orderDetail);
+        return orderDetailDao.updateOrderDetail(orderDetail);
+    }
+
 
 }

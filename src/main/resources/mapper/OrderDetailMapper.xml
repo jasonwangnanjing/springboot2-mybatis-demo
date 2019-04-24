@@ -15,10 +15,18 @@
       select * from tb_orderdetail where order_id = #{orderId}
    </select>
     <update id="updateMaterial" parameterType="OrderDetail">
-       update tb_orderdetail set
+       update tb_orderdetail
+              <set>
+                  <if test="#{status} != null">
                       tb_orderdetail.status = #{status},
-                      tb_orderdetail.materialId = #{OrderDetail.getMaterial().getId()},
+                  </if>
+                  <if test="#{material.Id} != null">
+                      tb_orderdetail.materialId = #{material.Id},
+                  </if>
+                  <if test="#{totalPrice} != null">
                       tb_orderdetail.total_price = #{totalPrice}
+                  </if>
+              </set>
                       where order_id = #{orderId} AND item_id = #{itemId}
    </update>
 

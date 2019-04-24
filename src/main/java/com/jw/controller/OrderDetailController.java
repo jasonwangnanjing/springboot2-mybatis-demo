@@ -24,16 +24,33 @@ public class OrderDetailController {
 
     @ResponseBody
     @RequestMapping(value = "/getOrderDetails")
-    public List<OrderDetail> get(@RequestParam String orderId) {
+    public List<OrderDetail> get(@RequestParam final String orderId) {
 
         return orderDetailService.getOrderDetails(orderId);
     }
 
     @ResponseBody
     @RequestMapping(value = "/getOrderDetail")
-    public OrderDetail get(@RequestParam String orderId,@RequestParam String itemId) {
+    public OrderDetail get(@RequestParam final String orderId,@RequestParam final String itemId) {
 
         return orderDetailService.getOrderDetail(orderId,itemId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/updateOrderDetail", method = RequestMethod.PUT)
+    public int update(@RequestBody OrderDetail orderDetail){
+//
+//        orderDetail.setOrderId(orderId);
+//        orderDetail.setItemId(itemId);
+
+        return orderDetailService.updateOrderDetail(orderDetail);
+    }
+
+    @ResponseBody
+    @PatchMapping(value = "/updateOrderD")
+    public int updateOrderDetail(@RequestBody OrderDetail orderDetail){
+
+        return orderDetailService.updateOrderDetail(orderDetail);
     }
 
 }

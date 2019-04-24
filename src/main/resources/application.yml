@@ -36,7 +36,11 @@ mybatis:
   configuration:
     mapUnderscoreToCamelCase: true
 
+tomcat:
+  parseBodyMethods:POST,PUT,DELETE
 
+#  logging.level.root=WARN
+#  logging.level.org.springframework.web=DEBUG
 
 #pagehelper
 pagehelper:

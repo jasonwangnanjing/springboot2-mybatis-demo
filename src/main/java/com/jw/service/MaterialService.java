@@ -1,4 +1,4 @@
-package com.jw.service.user;
+package com.jw.service;
 
 import com.jw.model.Material;
 

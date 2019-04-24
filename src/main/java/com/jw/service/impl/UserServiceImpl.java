@@ -1,10 +1,10 @@
-package com.jw.service.user.impl;
+package com.jw.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jw.dao.UserDao;
 import com.jw.model.User;
-import com.jw.service.user.UserService;
+import com.jw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

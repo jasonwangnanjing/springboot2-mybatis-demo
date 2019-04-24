@@ -1,9 +1,9 @@
-package com.jw.service.user.impl;
+package com.jw.service.impl;
 
 import com.jw.dao.MaterialDao;
 import com.jw.exception.ParameterInvalidException;
 import com.jw.model.Material;
-import com.jw.service.user.MaterialService;
+import com.jw.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

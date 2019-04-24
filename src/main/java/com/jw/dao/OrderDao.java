@@ -7,7 +7,7 @@ import java.util.List;
 public interface OrderDao {
 
     int create(Order order);
-    List<Order> getList(int user_id);
+    Order getOrder(String orderId);
     int update(Order order);
     int delete(Order order);
 }

@@ -1,4 +1,14 @@
 package com.jw.service;
 
+import com.jw.model.Order;
+
 public interface OrderService {
+
+
+    int createOrder(Order order);
+
+
+    Order getOrder(String orderId);
+
+    int updateOrder(Order order);
 }

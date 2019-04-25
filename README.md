@@ -35,3 +35,18 @@ authorization with spring security
  Common Errors:
  during sql operation, sometimes it report error 'does not have get method for property xxx',need check sql's object has a property or not.
  
+ posted object with wrong format like below, will not be handled by spring, no exception will be raised
+ 
+ {
+ 	"orderId": "201904120001",
+ 	"itemId": "1",
+ 	"material": "3"
+ }
+ 
+ with right format, it will be handled
+{
+	"orderId": "201904120001",
+	"itemId": "1",
+	"material": {"id":"3"}
+}
+

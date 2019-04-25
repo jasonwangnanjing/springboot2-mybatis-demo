@@ -38,7 +38,7 @@ public class OrderDetailController {
 
     //put change whole object
     @ResponseBody
-    @RequestMapping(value = "/updateOrderDetail", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateWholeOrderDetail", method = RequestMethod.PUT)
     public int update(@RequestBody OrderDetail orderDetail){
 
 
@@ -46,7 +46,7 @@ public class OrderDetailController {
     }
     //patch only change part of the object
     @ResponseBody
-    @PatchMapping(value = "/updateOrderD")
+    @PatchMapping(value = "/updateOrderDetailFields")
     public int updateOrderDetail(@RequestBody OrderDetail orderDetail){
 
         return orderDetailService.updateOrderDetail(orderDetail);

@@ -23,77 +23,81 @@
        keyColumn：指定数据库的主键
        keyProperty：主键对应的pojo属性名
      -->
-<!--    <resultMap id="OrderUserResultMap" type="Order" autoMapping="true">-->
-<!--        <id column="id" property="id"/>-->
-<!--        &lt;!&ndash;association:完成子对象的映射&ndash;&gt;-->
-<!--        &lt;!&ndash;property:子对象在父对象中的属性名&ndash;&gt;-->
-<!--        &lt;!&ndash;javaType:子对象的java类型&ndash;&gt;-->
-<!--        &lt;!&ndash;autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配&ndash;&gt;-->
-<!--        <association property="user" javaType="User" autoMapping="true">-->
-<!--            <id column="user_id" property="id"/>-->
-<!--        </association>-->
-<!--    </resultMap>-->
+    <resultMap id="OrderUserResultMap" type="Order" autoMapping="true">
+        <id column="id" property="id"/>
+        <!--association:完成子对象的映射-->
+        <!--property:子对象在父对象中的属性名-->
+        <!--javaType:子对象的java类型-->
+        <!--autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配-->
+        <association property="user" javaType="User" autoMapping="true">
+            <id column="user_id" property="id"/>
+        </association>
+    </resultMap>
 
-<!--    &lt;!&ndash;order of selected  fields must correct otherwise will cause miss match&ndash;&gt;-->
-<!--    <select id="queryOrderWithUserByOrderNumber" resultMap="OrderUserResultMap">-->
-<!--      select user_id order_number  from tb_order o left join tb_user u on o.user_id=u.id where o.order_number = #{number}-->
-<!--    </select>-->
+    <!--order of selected  fields must correct otherwise will cause miss match-->
+    <select id="queryOrderWithUserByOrderNumber" resultMap="OrderUserResultMap">
+      select user_id order_number  from tb_order o left join tb_user u on o.user_id=u.id where o.order_number = #{number}
+    </select>
 
 
-<!--    <resultMap id="OrderUserDetailResultMap" type="Order" autoMapping="true">-->
-<!--        <id column="id" property="id"/>-->
-<!--        &lt;!&ndash;collection:定义子对象集合映射&ndash;&gt;-->
-<!--        &lt;!&ndash;association:完成子对象的映射&ndash;&gt;-->
-<!--        &lt;!&ndash;property:子对象在父对象中的属性名&ndash;&gt;-->
-<!--        &lt;!&ndash;javaType:子对象的java类型&ndash;&gt;-->
-<!--        &lt;!&ndash;autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配&ndash;&gt;-->
-<!--        <association property="user" javaType="User" autoMapping="true">-->
-<!--            <id column="user_id" property="id"/>-->
-<!--        </association>-->
-<!--        <collection property="detailList" javaType="List" ofType="OrderDetail" autoMapping="true">-->
-<!--            <id column="id" property="id"/>-->
-<!--        </collection>-->
-<!--    </resultMap>-->
+    <resultMap id="OrderUserDetailResultMap" type="Order" autoMapping="true">
+        <id column="id" property="id"/>
+        <!--collection:定义子对象集合映射-->
+        <!--association:完成子对象的映射-->
+        <!--property:子对象在父对象中的属性名-->
+        <!--javaType:子对象的java类型-->
+        <!--autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配-->
+        <association property="user" javaType="User" autoMapping="true">
+            <id column="user_id" property="id"/>
+        </association>
+        <collection property="detailList" javaType="List" ofType="OrderDetail" autoMapping="true">
+            <id column="id" property="id"/>
+        </collection>
+    </resultMap>
 
-<!--    <select id="queryOrderWithUserAndDetailByOrderNumber" resultMap="OrderUserDetailResultMap">-->
-<!--   select * from tb_order o left join tb_user u on o.user_id=u.id left join tb_orderdetail od on o.order_number=od.order_id where o.order_number = #{number}-->
-<!--</select>-->
+    <select id="queryOrderWithUserAndDetailByOrderNumber" resultMap="OrderUserDetailResultMap">
+   select * from tb_order o left join tb_user u on o.user_id=u.id left join tb_orderdetail od on o.order_number=od.order_id where o.order_number = #{number}
+</select>
 
-<!--    <resultMap id="OrderUserDetailItemResultMap" type="Order" autoMapping="true">-->
-<!--        <id column="id" property="id"/>-->
-<!--        <association property="user" javaType="User" autoMapping="true">-->
-<!--            <id column="user_id" property="id"/>-->
-<!--        </association>-->
-<!--        <collection property="detailList" javaType="List" ofType="OrderDetail" autoMapping="true">-->
-<!--            <id column="id" property="id"/>-->
-<!--            <association property="material" javaType="Material" autoMapping="true">-->
-<!--                <id column="id" property="id"/>-->
-<!--            </association>-->
-<!--        </collection>-->
-<!--    </resultMap>-->
+    <resultMap id="OrderUserDetailItemResultMap" type="Order" autoMapping="true">
+        <id column="id" property="id"/>
+        <association property="user" javaType="User" autoMapping="true">
+            <id column="user_id" property="id"/>
+        </association>
+        <collection property="detailList" javaType="List" ofType="OrderDetail" autoMapping="true">
+            <id column="id" property="id"/>
+            <association property="material" javaType="Material" autoMapping="true">
+                <id column="id" property="id"/>
+            </association>
+        </collection>
+    </resultMap>
 
-<!--    <select id="queryOrderWithUserAndDetailItemByOrderNumber" resultMap="OrderUserDetailItemResultMap">-->
-<!--   select * ,od.id as detail_id from tb_order o-->
-<!--   left join tb_user u on o.user_id=u.id-->
-<!--   left join tb_orderdetail od on o.order_number=od.order_id-->
-<!--   left join tb_item i on od.item_id=i.id-->
-<!--   where o.order_number = #{number}-->
-<!--</select>-->
+    <select id="queryOrderWithUserAndDetailItemByOrderNumber" resultMap="OrderUserDetailItemResultMap">
+   select * ,od.id as detail_id from tb_order o
+   left join tb_user u on o.user_id=u.id
+   left join tb_orderdetail od on o.order_number=od.order_id
+   left join tb_item i on od.item_id=i.id
+   where o.order_number = #{number}
+</select>
 
-<!--    <resultMap id="LazyOrderUserResultMap" type="Order" autoMapping="true">-->
-<!--        <id column="id" property="id"/>-->
-<!--        <association property="user" javaType="User" autoMapping="true" select="LazySelectOrderUser" column="user_id">-->
-<!--            <id column="user_id" property="id"/>-->
-<!--        </association>-->
-<!--    </resultMap>-->
+    <resultMap id="LazyOrderUserResultMap" type="Order" autoMapping="true">
+        <id column="id" property="id"/>
+        <association property="user" javaType="User" autoMapping="true" select="LazySelectOrderUser" column="user_id">
+            <id column="user_id" property="id"/>
+        </association>
+    </resultMap>
 
-<!--    <select id="LazySelectOrderByNumber" resultMap="LazyOrderUserResultMap">-->
-<!--        select * from tb_order where order_number = #{number}-->
-<!--    </select>-->
+    <select id="LazySelectOrderByNumber" resultMap="LazyOrderUserResultMap">
+        select * from tb_order where order_number = #{number}
+    </select>
 
-<!--    <select id="LazySelectOrderUser" resultType="User">-->
-<!--        select * from tb_user where id = #{id}-->
-<!--    </select>-->
+    <select id="LazySelectOrderUser" resultType="User">
+        select * from tb_user where id = #{id}
+    </select>
+
+    <delete id="delete" flushCache="true">
+        delete  from tb_order where order_number = #{number}
+    </delete>
 
 
 </mapper>

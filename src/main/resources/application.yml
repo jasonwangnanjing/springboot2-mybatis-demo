@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 spring:
     datasource:
         name: mariadb_local
@@ -39,8 +38,7 @@ mybatis:
 tomcat:
   parseBodyMethods:POST,PUT,DELETE
 
-#  logging.level.root=WARN
-#  logging.level.org.springframework.web=DEBUG
+
 
 #pagehelper
 pagehelper:
@@ -49,4 +47,10 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
     returnPageInfo: check
+logging:
+  level:
+    org.springfromework.web: TRACE
+    root: WARN
+    com.jw: TRACE
+  path: /opt/log/springboot.log
 

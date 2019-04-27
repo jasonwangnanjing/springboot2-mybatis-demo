@@ -37,8 +37,15 @@
         delete from tb_orderdetail where order_id = #{orderId} AND item_id = #{itemId}
     </delete>
     <insert id="createOrderDetail" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="OrderDetail">
-
         insert into tb_orderdetail ( order_id,total_price,item_id,status,materialId ) values  ( #{orderId}, #{totalPrice},#{itemId},#{status},#{material.id} )
-
     </insert>
+
+    <insert id="createOrderDetails" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+        insert into tb_orderdetail ( order_id,total_price,item_id,status,materialId ) values
+        <foreach item="item" collection="list" separator=",">
+            ( #{item.orderId}, #{item.totalPrice},#{item.itemId},#{item.status},#{item.material.id} )
+        </foreach>
+    </insert>
+
+
 </mapper>

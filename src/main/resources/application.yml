@@ -2,6 +2,7 @@ server:
   port: 8080
 
 spring:
+
     datasource:
         name: mariadb_local
         type: org.apache.commons.dbcp2.BasicDataSource
@@ -50,7 +51,7 @@ pagehelper:
 logging:
   level:
     org.springfromework.web: TRACE
-    root: WARN
+    root: INFO
     com.jw: TRACE
   path: /opt/log/springboot.log
 

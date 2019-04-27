@@ -13,4 +13,6 @@ public interface OrderDetailService {
     OrderDetail getOrderDetail(String orderId,String itemId);
 
     int updateOrderDetail(OrderDetail orderDetail);
+
+    int deleteOrderDetail(OrderDetail orderDetail);
 }

@@ -52,4 +52,11 @@ public class OrderDetailController {
         return orderDetailService.updateOrderDetail(orderDetail);
     }
 
+    @ResponseBody
+    @DeleteMapping(value = "/delete")
+    public int deleteOrderDetail(@RequestBody OrderDetail orderDetail){
+
+        return orderDetailService.deleteOrderDetail(orderDetail);
+    }
+
 }

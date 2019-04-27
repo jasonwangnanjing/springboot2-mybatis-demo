@@ -4,7 +4,10 @@ import com.jw.dao.OrderDetailDao;
 import com.jw.model.OrderDetail;
 import com.jw.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,6 +18,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     private OrderDetailDao orderDetailDao;
 
     @Override
+    @Transactional(propagation = Propagation.NESTED)
     public int createOrderDetail(OrderDetail orderDetail) {
 
         return  orderDetailDao.createOrderDetail(orderDetail);
@@ -35,6 +39,11 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public int updateOrderDetail(OrderDetail orderDetail) {
         System.out.println(orderDetail);
         return orderDetailDao.updateOrderDetail(orderDetail);
+    }
+
+    @Override
+    public int deleteOrderDetail(OrderDetail orderDetail) {
+        return orderDetailDao.deleteOrderDetail(orderDetail );
     }
 
 

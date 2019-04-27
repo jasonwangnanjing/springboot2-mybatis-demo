@@ -1,9 +1,13 @@
 package com.jw.model;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
-public class Order {
+public class Order  implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private BigInteger id;
     private Long userId;
@@ -11,6 +15,10 @@ public class Order {
     private Date created;
     private Date updated;
     private  User user;
+
+
+
+    private List<OrderDetail> orderDetails;
 
     public BigInteger getId() {
         return id;
@@ -58,6 +66,14 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     @Override

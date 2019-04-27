@@ -29,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
         int order_detail_Created = orderDetailDao.createOrderDetails(order.getOrderDetails());
 
         if (order_created > 0 && order_detail_Created > 0) {
-            return orderDao.create(order);
+            return order_created;
 
         } else {
             //raise exception in future.

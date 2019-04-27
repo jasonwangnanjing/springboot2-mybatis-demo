@@ -91,13 +91,15 @@
         select * from tb_order where order_number = #{number}
     </select>
 
-    <select id="LazySelectOrderUser" resultType="User">
-        select * from tb_user where id = #{id}
-    </select>
+
 
     <delete id="delete" flushCache="true">
         delete  from tb_order where order_number = #{number}
     </delete>
+
+    <insert id="create" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="Order">
+        insert into tb_order ( order_number,user_id,created,updated ) values  ( #{orderNumber}, #{user.id},#{created},#{updated})
+    </insert>
 
 
 </mapper>

@@ -11,7 +11,7 @@ public class Order  implements Serializable {
 
     private BigInteger id;
     private Long userId;
-    private String orderNumber;
+    private BigInteger orderNumber;
     private Date created;
     private Date updated;
     private  User user;
@@ -36,11 +36,11 @@ public class Order  implements Serializable {
         this.userId = userId;
     }
 
-    public String getOrderNumber() {
+    public BigInteger getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(BigInteger orderNumber) {
         this.orderNumber = orderNumber;
     }
 

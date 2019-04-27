@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service( value = "OrderDetailService")
+@Service(value = "OrderDetailService")
 public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Autowired
@@ -21,8 +21,15 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     @Transactional(propagation = Propagation.NESTED)
     public int createOrderDetail(OrderDetail orderDetail) {
 
-        return  orderDetailDao.createOrderDetail(orderDetail);
+        return orderDetailDao.createOrderDetail(orderDetail);
 
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NESTED)
+    public int createOrderDetails(List<OrderDetail> orderDetails) {
+
+        return orderDetailDao.createOrderDetails(orderDetails);
     }
 
     @Override
@@ -31,8 +38,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    public OrderDetail getOrderDetail(String orderId,String itemId) {
-        return orderDetailDao.getOrderDetail(orderId,itemId);
+    public OrderDetail getOrderDetail(String orderId, String itemId) {
+        return orderDetailDao.getOrderDetail(orderId, itemId);
     }
 
     @Override
@@ -43,7 +50,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
     @Override
     public int deleteOrderDetail(OrderDetail orderDetail) {
-        return orderDetailDao.deleteOrderDetail(orderDetail );
+        return orderDetailDao.deleteOrderDetail(orderDetail);
     }
 
 

@@ -8,6 +8,8 @@ public interface OrderDetailService {
 
     int createOrderDetail(OrderDetail orderDetail);
 
+    int createOrderDetails(List<OrderDetail> orderDetail);
+
     List<OrderDetail> getOrderDetails(String order_number);
 
     OrderDetail getOrderDetail(String orderId,String itemId);

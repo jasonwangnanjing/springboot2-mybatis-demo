@@ -10,7 +10,7 @@ public interface OrderService {
     int createOrder(Order order);
 
 
-    Order getOrder(String orderId);
+    Order getOrder(BigInteger orderId);
 
     int updateOrder(Order order);
 

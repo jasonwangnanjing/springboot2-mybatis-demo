@@ -39,7 +39,7 @@ public class OrderController {
 
     @ResponseBody
     @GetMapping(value = "/get/{order_number}")
-    public Order get(@PathVariable("order_number") String  order_number){
+    public Order get(@PathVariable("order_number") BigInteger  order_number){
 
         return orderService.getOrder(order_number);
     }

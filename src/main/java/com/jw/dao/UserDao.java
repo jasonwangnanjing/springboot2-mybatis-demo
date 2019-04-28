@@ -10,7 +10,7 @@ public interface UserDao {
 
     int insert(User record);
 
-
+    int updateUser(User user);
 
     List<User> selectUsers();
 }

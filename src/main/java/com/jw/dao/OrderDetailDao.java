@@ -13,5 +13,6 @@ public interface OrderDetailDao {
     List<OrderDetail> getOrderDetails(String order_number);
     OrderDetail getOrderDetail(String orderId,String itemId);
     int updateOrderDetail(OrderDetail orderDetail);
+    int updateOrderDetails(List<OrderDetail> orderDetail);
     int deleteOrderDetail(OrderDetail orderDetail);
 }

@@ -47,5 +47,26 @@
         </foreach>
     </insert>
 
+    <update id="updateOrderDetails" parameterType="java.util.List">
+      <foreach collection="list" item="item" separator=";">
+        update tb_orderdetail
+        <set>
+
+            <if test="item.status != null">
+                tb_orderdetail.status = #{item.status},
+            </if>
+            <if test="item.material != null">
+                <if test="item.material.id != null">
+                    tb_orderdetail.materialId = #{item.material.id},
+                </if>
+            </if>
+            <if test="item.totalPrice != null">
+                tb_orderdetail.total_price = #{item.totalPrice}
+            </if>
+        </set>
+        where order_id = #{item.orderId} AND item_id = #{item.itemId}
+      </foreach>
+    </update>
+
 
 </mapper>

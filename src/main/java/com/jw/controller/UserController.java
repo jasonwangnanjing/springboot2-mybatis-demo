@@ -23,6 +23,13 @@ public class UserController {
     }
 
     @ResponseBody
+    @PostMapping("/update")
+    public int updateUser(@RequestBody  User user){
+        return userService.updateUser(user);
+    }
+
+
+    @ResponseBody
     @GetMapping("/all")
     public Object findAllUser(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")

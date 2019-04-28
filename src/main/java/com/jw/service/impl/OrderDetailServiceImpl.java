@@ -6,6 +6,7 @@ import com.jw.service.OrderDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     private OrderDetailDao orderDetailDao;
 
     @Override
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
     public int createOrderDetail(OrderDetail orderDetail) {
 
         return orderDetailDao.createOrderDetail(orderDetail);
@@ -26,7 +27,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
+    //item could be created together with order, or created with exist order.
+    //user REQUIRED, to combine with order creation, or own creation.
     public int createOrderDetails(List<OrderDetail> orderDetails) {
 
         return orderDetailDao.createOrderDetails(orderDetails);
@@ -43,9 +46,17 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
     public int updateOrderDetail(OrderDetail orderDetail) {
-        System.out.println(orderDetail);
+
         return orderDetailDao.updateOrderDetail(orderDetail);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
+    public int updateOrderDetails(List<OrderDetail> orderDetails) {
+
+        return orderDetailDao.updateOrderDetails(orderDetails);
     }
 
     @Override

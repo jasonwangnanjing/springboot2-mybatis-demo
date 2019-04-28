@@ -16,5 +16,7 @@ public interface OrderDetailService {
 
     int updateOrderDetail(OrderDetail orderDetail);
 
+    int updateOrderDetails(List<OrderDetail> orderDetail);
+
     int deleteOrderDetail(OrderDetail orderDetail);
 }

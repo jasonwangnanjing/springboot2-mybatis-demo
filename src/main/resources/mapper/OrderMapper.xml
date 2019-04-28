@@ -92,7 +92,6 @@
     </select>
 
 
-
     <delete id="delete" flushCache="true">
         delete  from tb_order where order_number = #{number}
     </delete>
@@ -100,6 +99,21 @@
     <insert id="create" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="Order">
         insert into tb_order ( order_number,user_id,created,updated ) values  ( #{orderNumber}, #{user.id},#{created},#{updated})
     </insert>
+
+    <update id="update" parameterType="Order">
+
+        update tb_order
+        <set>
+
+            <if test="user.Id != null">
+                tb_order.user_id = #{user.id},
+            </if>
+
+            tb_order.updated = now(),
+
+        </set>
+        where order_number = #{orderNumber}
+    </update>
 
 
 </mapper>

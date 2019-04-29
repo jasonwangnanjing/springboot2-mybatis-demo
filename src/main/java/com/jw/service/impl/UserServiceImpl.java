@@ -3,7 +3,7 @@ package com.jw.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jw.dao.UserDao;
-import com.jw.model.User;
+import com.jw.model.SysUser;
 import com.jw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +20,14 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;//这里会报错，但是并不会影响
 
     @Override
-    public int addUser(User user) {
+    public int addUser(SysUser sysUser) {
 
-        return userDao.insert(user);
+        return userDao.insert(sysUser);
     }
 
     @Override
-    public int updateUser(User user) {
-        return userDao.updateUser(user);
+    public int updateUser(SysUser sysUser) {
+        return userDao.updateUser(sysUser);
     }
 
     /*
@@ -37,11 +37,11 @@ public class UserServiceImpl implements UserService {
     * pageSize 每页显示的数据条数
     * */
     @Override
-    public PageInfo<User> findAllUser(int pageNum, int pageSize) {
+    public PageInfo<SysUser> findAllUser(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
         PageHelper.startPage(pageNum, pageSize);
-        List<User> users = userDao.selectUsers();
-        PageInfo result = new PageInfo(users);
+        List<SysUser> sysUsers = userDao.selectUsers();
+        PageInfo result = new PageInfo(sysUsers);
         return result;
     }
 }

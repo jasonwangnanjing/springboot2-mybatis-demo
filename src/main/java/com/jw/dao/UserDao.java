@@ -1,16 +1,16 @@
 package com.jw.dao;
 
 
-import com.jw.model.User;
+import com.jw.model.SysUser;
 
 import java.util.List;
 
 public interface UserDao {
 
 
-    int insert(User record);
+    int insert(SysUser record);
 
-    int updateUser(User user);
+    int updateUser(SysUser sysUser);
 
-    List<User> selectUsers();
+    List<SysUser> selectUsers();
 }

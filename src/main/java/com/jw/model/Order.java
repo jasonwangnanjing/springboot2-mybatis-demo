@@ -13,7 +13,7 @@ public class Order implements Serializable {
     private BigInteger orderNumber;
     private Date created;
     private Date updated;
-    private User user;
+    private SysUser sysUser;
 
 
     private List<OrderDetail> orderDetails;
@@ -50,12 +50,12 @@ public class Order implements Serializable {
         this.updated = updated;
     }
 
-    public User getUser() {
-        return user;
+    public SysUser getSysUser() {
+        return sysUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
     }
 
     public List<OrderDetail> getOrderDetails() {
@@ -70,11 +70,11 @@ public class Order implements Serializable {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", userId=" + user.getId() +
+                ", userId=" + sysUser.getId() +
                 ", orderNumber='" + orderNumber + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
-                ", user=" + user +
+                ", sysUser=" + sysUser +
                 '}';
     }
 }

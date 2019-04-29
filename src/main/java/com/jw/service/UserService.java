@@ -1,16 +1,16 @@
 package com.jw.service;
 
 import com.github.pagehelper.PageInfo;
-import com.jw.model.User;
+import com.jw.model.SysUser;
 
 /**
  * Created by Administrator on 2018/4/19.
  */
 public interface UserService {
 
-    int addUser(User user);
+    int addUser(SysUser sysUser);
 
-    int updateUser(User user);
+    int updateUser(SysUser sysUser);
 
-    PageInfo<User> findAllUser(int pageNum, int pageSize);
+    PageInfo<SysUser> findAllUser(int pageNum, int pageSize);
 }

@@ -29,7 +29,7 @@
         <!--property:子对象在父对象中的属性名-->
         <!--javaType:子对象的java类型-->
         <!--autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配-->
-        <association property="user" javaType="User" autoMapping="true">
+        <association property="sysUser" javaType="User" autoMapping="true">
             <id column="user_id" property="id"/>
         </association>
     </resultMap>
@@ -47,7 +47,7 @@
         <!--property:子对象在父对象中的属性名-->
         <!--javaType:子对象的java类型-->
         <!--autoMapping:完成子对象的自动映射，若开启驼峰，则按驼峰匹配-->
-        <association property="user" javaType="User" autoMapping="true">
+        <association property="sysUser" javaType="User" autoMapping="true">
             <id column="user_id" property="id"/>
         </association>
         <collection property="orderDetails" javaType="List" ofType="OrderDetail" autoMapping="true">
@@ -61,7 +61,7 @@
 
     <resultMap id="OrderUserDetailItemResultMap" type="Order" autoMapping="true">
         <id column="id" property="id"/>
-        <association property="user" javaType="User" autoMapping="true">
+        <association property="sysUser" javaType="User" autoMapping="true">
             <id column="user_id" property="id"/>
         </association>
         <collection property="orderDetails" javaType="List" ofType="OrderDetail" autoMapping="true">
@@ -82,7 +82,7 @@
 
     <resultMap id="LazyOrderUserResultMap" type="Order" autoMapping="true">
         <id column="id" property="id"/>
-        <association property="user" javaType="User" autoMapping="true" select="LazySelectOrderUser" column="user_id">
+        <association property="sysUser" javaType="User" autoMapping="true" select="LazySelectOrderUser" column="user_id">
             <id column="user_id" property="id"/>
         </association>
     </resultMap>
@@ -97,7 +97,7 @@
     </delete>
     <!-- insert with parameterType will return generated key into object.could be used in program -->
     <insert id="create" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="Order">
-        insert into tb_order ( order_number,user_id,created,updated ) values  ( #{orderNumber}, #{user.id},#{created},#{updated})
+        insert into tb_order ( order_number,user_id,created,updated ) values  ( #{orderNumber}, #{sysUser.id},#{created},#{updated})
     </insert>
 
     <update id="update" parameterType="Order">
@@ -105,8 +105,8 @@
         update tb_order
         <set>
 
-            <if test="user.Id != null">
-                tb_order.user_id = #{user.id},
+            <if test="sysUser.Id != null">
+                tb_order.user_id = #{sysUser.id},
             </if>
 
             tb_order.updated = now(),

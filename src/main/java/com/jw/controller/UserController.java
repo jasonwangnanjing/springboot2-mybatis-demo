@@ -1,6 +1,6 @@
 package com.jw.controller;
 
-import com.jw.model.User;
+import com.jw.model.SysUser;
 import com.jw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,14 +18,14 @@ public class UserController {
 
     @ResponseBody
     @PostMapping("/add")
-    public int addUser(@RequestBody  User user){
-        return userService.addUser(user);
+    public int addUser(@RequestBody SysUser sysUser){
+        return userService.addUser(sysUser);
     }
 
     @ResponseBody
     @PostMapping("/update")
-    public int updateUser(@RequestBody  User user){
-        return userService.updateUser(user);
+    public int updateUser(@RequestBody SysUser sysUser){
+        return userService.updateUser(sysUser);
     }
 
 

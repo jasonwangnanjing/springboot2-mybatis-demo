@@ -28,6 +28,14 @@ service for order
 service for order detail
 
 authorization with spring security
+1.Create db table sysroles
+2.create db table sysauth
+3.enhance db table user with encrypted password
+4.enhance userdao to get user info with password roles and authorizations
+5.implment userdetail service 
+6.enhance security configuration to include encoder and userdetailservice
+7.enhance usercontroller to enable login with user name and password and return an token
+8.enhance other business function logic to do authorizatin check and token validation.
 
 **vue as frontend?** 
  

@@ -32,6 +32,7 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.jw.model
+  dataSource: mariadb_local
 #  config-location: classpath:mybatis-config.xml
   configuration:
     mapUnderscoreToCamelCase: true
@@ -51,7 +52,7 @@ pagehelper:
 logging:
   level:
     org.springfromework.web: TRACE
-    root: INFO
+    root: DEBUG
     com.jw: TRACE
   path: /opt/log/springboot.log
 

@@ -1,6 +1,7 @@
 package com.jw.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class SysUser implements Serializable {
 
@@ -21,6 +22,15 @@ public class SysUser implements Serializable {
 
     private String password;
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    private List<Role> roles;
     public int getAge() {
         return age;
     }
@@ -30,7 +40,6 @@ public class SysUser implements Serializable {
     }
 
     private int age;
-
 
 
     public String getUserName() {

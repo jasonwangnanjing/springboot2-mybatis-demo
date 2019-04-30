@@ -13,4 +13,6 @@ public interface UserDao {
     int updateUser(SysUser sysUser);
 
     List<SysUser> selectUsers();
+
+    SysUser getUserByName(String userName);
 }

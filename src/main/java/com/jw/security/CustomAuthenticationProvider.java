@@ -1,5 +1,10 @@
 package com.jw.security;
 
+import com.jw.dao.UserDao;
+import com.jw.model.Permission;
+import com.jw.model.Role;
+import com.jw.model.SysUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -8,9 +13,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.ArrayList;
+import java.util.List;
 
 // 自定义身份认证验证组件
 public class CustomAuthenticationProvider implements AuthenticationProvider {
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -18,17 +27,27 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        // 认证逻辑
-        if (name.equals("admin") && password.equals("123456")) {
+        SysUser user = userDao.getUserByName(name);
 
-            // 这里设置权限和角色
+        // 认证逻辑
+        if ((user != null) && password.equals(user.getPassword())) {
+
+            //get user's roles.
             ArrayList<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add( new GrantedAuthorityImpl("ROLE_ADMIN") );
-            authorities.add( new GrantedAuthorityImpl("AUTH_WRITE") );
+            ArrayList<Permission> permissions = new ArrayList<>();
+
+            List<Role> roles = user.getRoles();
+
+            roles.forEach(role -> authorities.add(new GrantedAuthorityImpl("ROLE_" + role.getName())));
+
+            roles.forEach(role -> permissions.addAll(role.getPermission()));
+
+            permissions.forEach(permission -> authorities.add(new GrantedAuthorityImpl("AUTO_" + permission.getName())));
+
             // 生成令牌
             Authentication auth = new UsernamePasswordAuthenticationToken(name, password, authorities);
             return auth;
-        }else {
+        } else {
             throw new BadCredentialsException("密码错误~");
         }
     }

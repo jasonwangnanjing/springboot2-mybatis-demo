@@ -30,3 +30,19 @@ CREATE TABLE ssmdemo.tb_permission(
                                     url VARCHAR(60) NOT NULL
 
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+
+use ssmdemo;
+
+CREATE TABLE ssmdemo.tb_role(
+                                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                    name VARCHAR(255) NOT NULL ,
+                                    roleCode INT(6) NOT NULL
+
+) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
+
+CREATE TABLE ssmdemo.tb_user_role(
+                                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                                    user_name VARCHAR(255) NOT NULL ,
+                                    roleCode INT(6) NOT NULL
+
+) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;

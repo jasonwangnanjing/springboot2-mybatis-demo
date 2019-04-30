@@ -105,8 +105,8 @@
         select * from ${tableName}
     </select>
 
-    <select id="login" resultType="SysUser">
-        select * from tb_user where user_name = #{userName} and password = #{password}
+    <select id="getUserByName" resultType="SysUser">
+        select * from tb_user where user_name = #{userName}
     </select>
 
     <!--&lt;!&ndash; statement，内容：sql语句。-->

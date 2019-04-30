@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
 
@@ -52,7 +52,7 @@ pagehelper:
 logging:
   level:
     org.springfromework.web: TRACE
-    root: DEBUG
+    root: INFO
     com.jw: TRACE
   path: /opt/log/springboot.log
 

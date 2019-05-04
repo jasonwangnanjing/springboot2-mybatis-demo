@@ -1,8 +1,9 @@
 package com.jw.controller;
 
 import com.jw.model.SysUser;
-import com.jw.service.UserService;
+import com.jw.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,28 +15,30 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private SysUserService sysUserService;
 
     @ResponseBody
     @PostMapping("/add")
+    @PreAuthorize( "hasRole('ADMIN')" )
     public int addUser(@RequestBody SysUser sysUser){
-        return userService.addUser(sysUser);
+        return sysUserService.addUser(sysUser);
     }
 
     @ResponseBody
     @PostMapping("/update")
     public int updateUser(@RequestBody SysUser sysUser){
-        return userService.updateUser(sysUser);
+        return sysUserService.updateUser(sysUser);
     }
 
 
     @ResponseBody
     @GetMapping("/all")
+    @PreAuthorize( "hasRole('ADMIN')" )
     public Object findAllUser(
             @RequestParam(name = "pageNum", required = false, defaultValue = "1")
                     int pageNum,
             @RequestParam(name = "pageSize", required = false, defaultValue = "10")
                     int pageSize){
-        return userService.findAllUser(pageNum,pageSize);
+        return sysUserService.findAllUser();
     }
 }

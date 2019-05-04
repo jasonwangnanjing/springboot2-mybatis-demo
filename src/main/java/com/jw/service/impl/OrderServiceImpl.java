@@ -5,7 +5,7 @@ import com.jw.dao.OrderDetailDao;
 import com.jw.model.Order;
 import com.jw.service.OrderDetailService;
 import com.jw.service.OrderService;
-import com.jw.service.UserService;
+import com.jw.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDetailService orderDetailService;
 
     @Autowired
-    private UserService userService;
+    private SysUserService sysUserService;
 
 
     @Override

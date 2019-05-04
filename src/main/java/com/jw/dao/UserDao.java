@@ -14,5 +14,6 @@ public interface UserDao {
 
     List<SysUser> selectUsers();
 
-    SysUser getUserByName(String userName);
+    SysUser getUserRolesPermissions(String userName);
+
 }

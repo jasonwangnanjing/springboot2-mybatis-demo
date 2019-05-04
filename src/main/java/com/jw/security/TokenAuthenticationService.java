@@ -15,18 +15,28 @@ import java.util.Date;
 import java.util.List;
 
 public class TokenAuthenticationService {
-    static final long EXPIRATIONTIME = 60;     // 5天
+    static final long EXPIRATIONTIME = 9999999999L;     // 5天
     static final String SECRET = "P@ssw02d";            // JWT密码
     static final String TOKEN_PREFIX = "Bearer";        // Token前缀
     static final String HEADER_STRING = "Authorization";// 存放Token的Header Key
 
-    static void addAuthentication(HttpServletResponse response, String username) {
+    static void addAuthentication(HttpServletResponse response, Authentication auth) {
+
+        String authString = new String();
+
+        for (GrantedAuthority authImpl : auth.getAuthorities()
+             ) {
+
+            authString = authString + "," + authImpl.getAuthority();
+
+        }
+
         // 生成JWT
         String JWT = Jwts.builder()
                 // 保存权限（角色）
-                .claim("authorities", "ROLE_ADMIN,AUTH_WRITE")
+                .claim("authorities", authString)
                 // 用户名写入标题
-                .setSubject(username)
+                .setSubject(auth.getName())
                 // 有效期设置
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
                 // 签名设置
@@ -59,8 +69,12 @@ public class TokenAuthenticationService {
             // 拿用户名
             String user = claims.getSubject();
 
+
             // 得到 权限（角色）
+
+
             List<GrantedAuthority> authorities =  AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
+
 
             // 返回验证令牌
             return user != null ?

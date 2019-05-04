@@ -1,9 +1,22 @@
 package com.jw.model;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private  int    id;
-    private String  name;
+
+    public String getPermissionName() {
+        return permissionName;
+    }
+
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
+
+    private String  permissionName;
     private int roleCode;
     private int sort;
     private int authType;
@@ -15,14 +28,6 @@ public class Permission {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getRoleCode() {

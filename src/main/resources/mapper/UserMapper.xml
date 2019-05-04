@@ -9,7 +9,7 @@
        2.${},普通的Statement，字符串直接拼接，不可以防止sql注入，一个参数的时候，必须使用${value}接收参数
        -->
     <!-- enable cache for name space dao.UserMapper cache's configuration readOnly will cause zangdu-->
-<!--    <cache-ref namespace="dao.OrderMapper"/>-->
+    <!--    <cache-ref namespace="dao.OrderMapper"/>-->
     <cache flushInterval="60000" eviction="FIFO" size="512" readOnly="false"/>
 
     <resultMap id="resultUser" type="com.jw.model.SysUser">
@@ -17,8 +17,18 @@
         <result column="user_name" property="userName"/>
     </resultMap>
 
+    <resultMap id="UserRoleAuthorizationResultMap" type="SysUser" autoMapping="true">
+        <id column="id" property="id"/>
+        <collection property="roles" javaType="List" ofType="Role" autoMapping="true">
+            <id column="id" property="id"/>
+            <collection property="permissions" javaType="List" ofType="Permission" autoMapping="true">
+                <id column="id" property="id"/>
+            </collection>
+        </collection>
+    </resultMap>
 
-     <!--&lt;!&ndash;sql id could be reused by different operation  &ndash;&gt;-->
+
+    <!--&lt;!&ndash;sql id could be reused by different operation  &ndash;&gt;-->
     <sql id="commonField">
     id,
     user_name,
@@ -32,12 +42,12 @@
     </sql>
 
     <!--&lt;!&ndash; 新增的Statement-->
-       <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
-       <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
-       <!--useGeneratedKeys:开启主键回写-->
-       <!--keyColumn：指定数据库的主键-->
-       <!--keyProperty：主键对应的pojo属性名-->
-     <!--&ndash;&gt;-->
+    <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
+    <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
+    <!--useGeneratedKeys:开启主键回写-->
+    <!--keyColumn：指定数据库的主键-->
+    <!--keyProperty：主键对应的pojo属性名-->
+    <!--&ndash;&gt;-->
     <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
             parameterType="com.jw.model.SysUser">
         INSERT INTO tb_user (
@@ -65,10 +75,10 @@
         );
     </insert>
     <!--&lt;!&ndash;-->
-       <!--更新的statement-->
-       <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
-       <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
-     <!--&ndash;&gt;-->
+    <!--更新的statement-->
+    <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
+    <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
+    <!--&ndash;&gt;-->
     <!--// delete/insert/update operation could be configed to flushCache 'false'-->
     <!--// per default. it was set to 'true' means cache will be flushed.-->
     <update id="updateUser" parameterType="com.jw.model.SysUser" flushCache="true">
@@ -87,18 +97,18 @@
         (id = #{id}) and (sex = 0);
     </update>
     <!--&lt;!&ndash;-->
-       <!--删除的statement-->
-       <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
-       <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
-     <!--&ndash;&gt;-->
+    <!--删除的statement-->
+    <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
+    <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
+    <!--&ndash;&gt;-->
     <delete id="deleteUserById" parameterType="java.lang.String">
         delete from tb_user where id=#{id}
     </delete>
 
 
-<!--    <select id="queryOrderWithUserByOrderNumber" resultMap="OrderUserResultMap">-->
-<!--      select * from tb_order o left join tb_user u on o.user_id=u.id where o.order_number = #{number}-->
-<!--    </select>-->
+    <!--    <select id="queryOrderWithUserByOrderNumber" resultMap="OrderUserResultMap">-->
+    <!--      select * from tb_order o left join tb_user u on o.user_id=u.id where o.order_number = #{number}-->
+    <!--    </select>-->
 
     <!--&lt;!&ndash;include refid could reuse defined sql id  &ndash;&gt;-->
     <select id="queryUserByTableName" resultMap="resultUser">
@@ -110,10 +120,10 @@
     </select>
 
     <!--&lt;!&ndash; statement，内容：sql语句。-->
-       <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
-       <!--resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->
-       <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
-     <!--&ndash;&gt;-->
+    <!--id：唯一标识，随便写，在同一个命名空间下保持唯一，使用动态代理之后要求和方法名保持一致-->
+    <!--resultType：sql语句查询结果集的封装类型，使用动态代理之后和方法的返回类型一致；resultMap：二选一-->
+    <!--parameterType：参数的类型，使用动态代理之后和方法的参数类型一致-->
+    <!--&ndash;&gt;-->
     <select id="queryUserById" resultType="com.jw.model.SysUser">
         select * from tb_user where id = #{id}
     </select>
@@ -122,6 +132,16 @@
     </select>
     <select id="selectUsers" resultType="com.jw.model.SysUser">
         select * from tb_user
+    </select>
+
+    <select id="getUserRolesPermissions" resultMap="UserRoleAuthorizationResultMap">
+
+    select *  from tb_user u
+    left join  tb_user_role ur on u.user_name = ur.user_name
+    left join  tb_role ro on ur.roleCode = ro.roleCode
+    left join  tb_permission rp on ur.roleCode = rp.roleCode
+    where u.user_name = #{user_name}
+
     </select>
 
 </mapper>

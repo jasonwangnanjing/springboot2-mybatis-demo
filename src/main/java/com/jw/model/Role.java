@@ -1,8 +1,11 @@
 package com.jw.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Role {
+public class Role  implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public int getId() {
         return id;
@@ -12,13 +15,6 @@ public class Role {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getRoleCode() {
         return roleCode;
@@ -28,18 +24,27 @@ public class Role {
         this.roleCode = roleCode;
     }
 
-    public List<Permission> getPermission() {
-        return permission;
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setPermission(List<Permission> permission) {
-        this.permission = permission;
+    public void setPermissions(List<Permission> permission) {
+        this.permissions = permission;
     }
 
     private  int id;
-    private  String name;
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    private  String roleName;
     private  int roleCode;
-    private List<Permission> permission;
+    private List<Permission> permissions;
 
 
 }

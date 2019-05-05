@@ -46,7 +46,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (user.getStatus() == USERDISABLED) {
 
 
-            throw new DisabledException("user: " + name + "disabled already.");
+            throw new DisabledException("user: " + name + " disabled already.");
         }
 
         // validate user name and password
@@ -79,7 +79,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
     }
 
-    // 是否可以提供输入类型的认证服务
+    // supper user name password authentication
     @Override
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);

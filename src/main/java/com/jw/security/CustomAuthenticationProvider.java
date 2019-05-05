@@ -6,6 +6,7 @@ import com.jw.model.SysUser;
 import com.jw.service.SysUserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -23,6 +24,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     private SysUserService sysUserService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final int USERDISABLED = 1;
 
     public CustomAuthenticationProvider(SysUserService sysUserService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
@@ -41,8 +43,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         SysUser user = sysUserService.getUserRolesPermissions(name);
 
+        if (user.getStatus() == USERDISABLED) {
+
+
+            throw new DisabledException("user: " + name + "disabled already.");
+        }
+
         // validate user name and password
-        if ((user != null) && bCryptPasswordEncoder.matches(password , user.getPassword())) {
+        if ((user != null) && bCryptPasswordEncoder.matches(password, user.getPassword())) {
 
             //get user's roles.
             List<GrantedAuthority> authorities = new ArrayList<>();

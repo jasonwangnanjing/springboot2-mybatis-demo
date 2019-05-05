@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class TokenAuthenticationService {
     static final long EXPIRATIONTIME = 9999999999L;     // duration of a token
     static final String SECRET = "P@ssw02d";            // JWT secret to encrypt content
@@ -70,7 +72,7 @@ public class TokenAuthenticationService {
             // get roles/authorities
             List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
 
-            // return tocken
+            // return token
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null, authorities) :
                     null;

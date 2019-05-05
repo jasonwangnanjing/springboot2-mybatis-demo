@@ -55,7 +55,7 @@
     <!--keyColumn：指定数据库的主键-->
     <!--keyProperty：主键对应的pojo属性名-->
     <!--&ndash;&gt;-->
-    <insert id="insertUser" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id" keyProperty="id"
             parameterType="com.jw.model.SysUser">
         INSERT INTO tb_user (
 
@@ -66,11 +66,11 @@
         sex,
         birthday,
         created,
-        updated
+        updated,
+        status
         )
         VALUES
         (
-
         #{userName},
         #{password},
         #{name},
@@ -78,7 +78,8 @@
         #{sex},
         #{birthday},
         NOW(),
-        NOW()
+        NOW(),
+        status
         );
     </insert>
     <!--&lt;!&ndash;-->

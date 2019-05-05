@@ -1,6 +1,7 @@
 package com.jw.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public class SysUser implements Serializable {
@@ -8,19 +9,57 @@ public class SysUser implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     private Integer id;
 
     private String userName;
 
     private String password;
+
+    private String name;
+
+    private int age;
+
+    private boolean sex;
+
+    private Date birthday;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status;
 
     public List<Role> getRoles() {
         return roles;
@@ -31,6 +70,7 @@ public class SysUser implements Serializable {
     }
 
     private List<Role> roles;
+
     public int getAge() {
         return age;
     }
@@ -38,8 +78,6 @@ public class SysUser implements Serializable {
     public void setAge(int age) {
         this.age = age;
     }
-
-    private int age;
 
 
     public String getUserName() {
@@ -59,4 +97,11 @@ public class SysUser implements Serializable {
     }
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

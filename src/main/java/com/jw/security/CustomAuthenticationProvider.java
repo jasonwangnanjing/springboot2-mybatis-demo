@@ -13,7 +13,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.Permissions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,14 +35,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        // 获取认证的用户名 & 密码
+        // get user name and password posted
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
         SysUser user = sysUserService.getUserRolesPermissions(name);
 
-        // 认证逻辑
-        if ((user != null) && password.equals(user.getPassword())) {
+        // validate user name and password
+        if ((user != null) && bCryptPasswordEncoder.matches(password , user.getPassword())) {
 
             //get user's roles.
             List<GrantedAuthority> authorities = new ArrayList<>();
@@ -57,7 +56,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
                     authorities.add(new GrantedAuthorityImpl("ROLE_" + role.getRoleName()));
                     permissions.addAll(role.getPermissions());
-
                 }
             }
             for (Permission permission : permissions) {
@@ -65,11 +63,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                 authorities.add(new GrantedAuthorityImpl("AUTH_" + permission.getPermissionName()));
             }
 
-            // 生成令牌
+            // generate token
             Authentication auth = new UsernamePasswordAuthenticationToken(name, password, authorities);
             return auth;
         } else {
-            throw new BadCredentialsException("密码错误~");
+            throw new BadCredentialsException("Bad user name or password");
         }
     }
 
@@ -78,5 +76,4 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
-
 }

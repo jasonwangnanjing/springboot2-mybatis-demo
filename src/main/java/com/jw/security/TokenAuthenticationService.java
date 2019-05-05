@@ -15,35 +15,33 @@ import java.util.Date;
 import java.util.List;
 
 public class TokenAuthenticationService {
-    static final long EXPIRATIONTIME = 9999999999L;     // 5天
-    static final String SECRET = "P@ssw02d";            // JWT密码
-    static final String TOKEN_PREFIX = "Bearer";        // Token前缀
-    static final String HEADER_STRING = "Authorization";// 存放Token的Header Key
+    static final long EXPIRATIONTIME = 9999999999L;     // duration of a token
+    static final String SECRET = "P@ssw02d";            // JWT secret to encrypt content
+    static final String TOKEN_PREFIX = "Bearer";        // Token prefix
+    static final String HEADER_STRING = "Authorization";// HTTP Header Key to store "Authorization"
 
     static void addAuthentication(HttpServletResponse response, Authentication auth) {
 
+        //prepare auth string based on user's assigned roles and authorities
         String authString = new String();
-
         for (GrantedAuthority authImpl : auth.getAuthorities()
-             ) {
-
-            authString = authString + "," + authImpl.getAuthority();
-
+        ) {
+            authString = authImpl.getAuthority() + "," + authString ;
         }
 
-        // 生成JWT
+        // Generate JWT
         String JWT = Jwts.builder()
-                // 保存权限（角色）
+                // take authorities strings
                 .claim("authorities", authString)
-                // 用户名写入标题
+                // set user name into subject
                 .setSubject(auth.getName())
-                // 有效期设置
+                // set expiration time
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
-                // 签名设置
+                // set signature
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .compact();
 
-        // 将 JWT 写入 body
+        // set JWT token into response body
         try {
             response.setContentType("application/json");
             response.setStatus(HttpServletResponse.SC_OK);
@@ -54,29 +52,25 @@ public class TokenAuthenticationService {
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {
-        // 从Header中拿到token
+        // get token from header string
         String token = request.getHeader(HEADER_STRING);
 
         if (token != null) {
-            // 解析 Token
+            // parser Token
             Claims claims = Jwts.parser()
-                    // 验签
+                    // check Signature
                     .setSigningKey(SECRET)
-                    // 去掉 Bearer
+                    // remove leading  Bearer
                     .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
                     .getBody();
 
-            // 拿用户名
+            // get user name from subject
             String user = claims.getSubject();
 
+            // get roles/authorities
+            List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
 
-            // 得到 权限（角色）
-
-
-            List<GrantedAuthority> authorities =  AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
-
-
-            // 返回验证令牌
+            // return tocken
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null, authorities) :
                     null;

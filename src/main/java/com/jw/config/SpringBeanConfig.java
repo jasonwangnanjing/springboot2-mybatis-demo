@@ -11,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringBeanConfig {
 
 
-
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

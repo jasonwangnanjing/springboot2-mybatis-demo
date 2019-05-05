@@ -18,11 +18,18 @@
     </resultMap>
 
     <resultMap id="UserRoleAuthorizationResultMap" type="SysUser" autoMapping="true">
-        <id column="id" property="id"/>
-        <collection property="roles" javaType="List" ofType="Role" autoMapping="true">
-            <id column="id" property="id"/>
-            <collection property="permissions" javaType="List" ofType="Permission" autoMapping="true">
-                <id column="id" property="id"/>
+        <id column="user_id" property="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="status" column="user_status"/>
+        <collection property="roles"  ofType="Role" autoMapping="true">
+            <result property="roleName" column="role_name"/>
+            <result property="roleCode" column="role_Code"/>
+            <collection property="permissions"  ofType="Permission" autoMapping="true">
+                <result property="permissionName" column="permission_Name"/>
+                <result property="roleCode" column="rp_roleCode"/>
+                <result property="sort" column="permission_Sort"/>
+                <result property="url" column="permission_Url"/>
             </collection>
         </collection>
     </resultMap>
@@ -136,7 +143,19 @@
 
     <select id="getUserRolesPermissions" resultMap="UserRoleAuthorizationResultMap">
 
-    select *  from tb_user u
+    select
+    u.id as user_id,
+    u.user_name as user_name,
+    u.password as password,
+    u.status as user_status,
+    ur.roleCode as role_Code,
+    ur.user_name as ur_username,
+    ur.roleName as role_name,
+    rp.permissionName as permission_Name,
+    rp.roleCode as rp_roleCode,
+    rp.sort as permission_Sort,
+    rp.url as permission_Url
+    from tb_user u
     left join  tb_user_role ur on u.user_name = ur.user_name
     left join  tb_role ro on ur.roleCode = ro.roleCode
     left join  tb_permission rp on ur.roleCode = rp.roleCode

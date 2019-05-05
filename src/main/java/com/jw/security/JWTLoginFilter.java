@@ -27,10 +27,10 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
             HttpServletRequest req, HttpServletResponse res)
             throws AuthenticationException, IOException, ServletException {
 
-        // JSON反序列化成 AccountCredentials
+        // JSON Deserialize AccountCredentials
         AccountCredentials creds = new ObjectMapper().readValue(req.getInputStream(), AccountCredentials.class);
 
-        // 返回一个验证令牌
+        // return JWT tocken
         return getAuthenticationManager().authenticate(
                 new UsernamePasswordAuthenticationToken(
                         creds.getUsername(),
